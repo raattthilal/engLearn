@@ -1,0 +1,30 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
+})
+export class HomeComponent implements OnInit {
+  constructor(private router: Router){
+  }
+  userPaymentStatus = 'NotPaid';
+
+  ngOnInit(): void {
+   this.userPaymentStatus = localStorage.getItem('userPaymentStatus') ?? 'NotPaid';
+  }
+  
+  logOut(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/login'])
+  }
+
+  beginOrPayment(){
+    if(this.userPaymentStatus==='DonePayment'){
+      this.router.navigate(['/course-content'])
+    }else{
+      this.router.navigate(['/payment'])
+    }
+  }
+}

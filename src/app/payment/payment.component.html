@@ -1,0 +1,21 @@
+<section class="firstSection">
+    <nav class="navbar navbar-light bg-dark" >
+        <a class="navbar-brand px-1" [routerLink]="['/home']">
+            <img src="../../../assets/logo.jpeg" class="logo" alt="" />
+            <h5 class="text-white mt-1">Let's Talk English</h5>
+          </a>
+          <div class="col-md-4 text-end px-3">
+            <button class="btn btn-danger" (click)="logOut()">Logout</button>
+          </div>
+      </nav>
+</section>
+<section class="secondSection">
+    <div class="container">
+        <h4 class="text-center text-danger mt-5">
+            Hi, You need to Buy this course first, to start learning.
+        </h4>
+        <div class="text-center">
+            <button class="btn btn-primary mt-5" (click)="payNow()">Pay Now</button>
+        </div>
+    </div>
+</section>

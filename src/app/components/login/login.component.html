@@ -1,0 +1,123 @@
+<section class="firstSection">
+  <nav class="navbar navbar-light bg-dark">
+    <a class="navbar-brand">
+      <img src="../../../assets/logo.jpeg" class="logo" alt="" />
+      <h5 class="text-white mt-1">Let's Talk English</h5>
+    </a>
+    <form [formGroup]="login" (ngSubmit)="submit()">
+    <div class="row loginform">
+      <div class="form-group col-md-5">
+        <label for="username" class="text-secondary">Username</label>
+        <input
+          type="email"
+          class="form-control mt-1"
+          id="exampleInputEmail1"
+          aria-describedby="emailHelp"
+          placeholder="Enter email"
+          formControlName="email"
+          required=""
+        />
+      </div>
+      <div class="form-group col-md-5">
+        <label for="password" class="text-secondary">Password</label>
+        <input
+          type="password"
+          class="form-control mt-1"
+          formControlName="password"
+          id="exampleInputPassword1"
+          placeholder="Enter password"
+          required=""
+        />
+        <p class="forget">
+          <a [routerLink]="['/forget-password']">Forgot password</a>
+        </p>
+      </div>
+      <div class="col-md-2 mt-4">
+        <button type="submit" class="btn btn-primary login-btn">
+          Login
+        </button>
+      </div>
+    </div>
+    </form>
+
+  </nav>
+</section>
+<section class="secondSection">
+  <div class="container row">
+    <div class="container col-md-auto">
+      <div class="signup shadow">
+        <h1 class="text-bold text-dark">Create an Account</h1>
+        <hr class="my-4" />
+        <div>
+          <form [formGroup]="register" (ngSubmit)="signup()">
+            <div class="form-group mt-3">
+              <label for="firstname" class="text-secondary">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="f-name"
+                formControlName="firstName"
+                aria-describedby="nameHelp"
+                placeholder="Enter first name"
+                required
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label for="lastname" class="text-secondary">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="l-name"
+                formControlName="lastName"
+                aria-describedby="nameHelp"
+                placeholder="Enter last name"
+                required
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label for="phone" class="text-secondary">Phone Number</label>
+              <input
+                type="number"
+                class="form-control"
+                id="phone"
+                formControlName="phone"
+                aria-describedby="nameHelp"
+                placeholder="Enter phone number"
+                required
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label for="email" class="text-secondary">Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                formControlName="email"
+                aria-describedby="emailHelp"
+                placeholder="Enter email"
+                required
+              />
+            </div>
+            <div class="form-group mt-3">
+              <label for="password" class="text-secondary">Password</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                formControlName="password"
+                placeholder="Password"
+                required
+              />
+            </div>
+
+            <div class="text-center mt-3">
+              <button [disabled]="!register.valid" type="submit" class="btn btn-success mt-3 signup-btn">
+                Signup
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
