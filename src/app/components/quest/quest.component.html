@@ -1,0 +1,71 @@
+<section class="firstSection">
+    <nav class="navbar navbar-light bg-dark" >
+        <a class="navbar-brand px-2">
+          <img src="../../../assets/logo.jpeg" class="logo" alt="" />
+          <h5 class="text-white mt-1">Let's Talk English</h5>
+        </a>
+        <div class="nav-opt" [routerLink]="['/dashboard']">
+            <h5 class="text-white">Dashboard</h5> 
+       </div>
+        <div class="nav-opt" [routerLink]="['/users']">
+           <h5 class="text-white">Users</h5> 
+        </div> 
+        <div class="nav-opt" [routerLink]="['/questions']">
+            <h5 class="text-primary">Questions</h5> 
+        </div>
+        <div class="nav-opt" [routerLink]="['/settings']">
+            <h5 class="text-white">Settings</h5> 
+        </div>         
+        <div class="col-md-3 text-end px-3">
+          <button class="btn btn-danger" (click)="logOut()">Logout</button>
+        </div>
+      </nav>
+</section>
+<section class="secondSection">
+    <div class="container mt-4">
+        <h4 class="text-muted">Question</h4>
+        <div class="update ">
+            <form [formGroup]="updateData" (ngSubmit)="update()" class="row">
+            <div class="col-md-12">
+                <label for="">Question</label>
+                <input type="text" class="form-control" id="question" formControlName="question">
+            </div>
+            <div class="col-md-6 mt-4">
+                <label for="">Opt-A</label>
+                <input type="text" class="form-control"  id="options_1" formControlName="options_1">
+            </div>
+            <div class="col-md-6 mt-4">
+                <label for="">Opt-B</label>
+                <input type="text" class="form-control" id="options_2" formControlName="options_2">
+            </div>
+            <div class="col-md-6 mt-4">
+                <label for="">Opt-C</label>
+                <input type="text" class="form-control" id="options_3"
+                formControlName="options_3">
+            </div>
+            <div class="col-md-6 mt-4">
+                <label for="">Opt-D</label>
+                <input type="text" class="form-control" id="options_4"
+                formControlName="options_4">
+            </div>
+            <div class="col-md-6 mt-4">
+                <label for="">Key</label>
+               <select name="" id="" class="form-control" formControlName="key">
+                <option value="">--select--</option>
+                <option value="options_1">Opt-A</option>
+                <option value="options_2">Opt-B</option>
+                <option value="options_3">Opt-C</option>
+                <option value="options_4">Opt-D</option>
+               </select>
+            </div>
+            <div *ngIf="id.length" class="col-md-6 text-end mt-4">
+                <button class="btn btn-outline-danger px-3" (click)="delete()">Delete  <span><i class="fa fa-trash-o" style="font-size:20px;color:rgb(222, 127, 127)"></i></span></button>
+            </div>
+            <div class="w-100 text-center mt-5">
+                <button class="btn btn-lg btn-outline-success"  type="submit"> Submit </button>
+            </div>
+        </form>
+        </div>
+        
+      </div>
+</section>

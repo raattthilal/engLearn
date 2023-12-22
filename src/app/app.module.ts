@@ -6,10 +6,19 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CourseContentComponent } from './course-content/course-content.component';
-import { PaymentComponent } from './payment/payment.component';
-import { ProfileComponent } from './profile/profile.component';
-import { ExaminationComponent } from './examination/examination.component';
+import { CourseContentComponent } from './components/course-content/course-content.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ExaminationComponent } from './components/examination/examination.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { Apiinterceptor } from './apiinterceptor';
+import { AuthInterceptor } from './auth.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UserComponent } from './components/user/user.component';
+import { QuestionComponent } from './components/question/question.component';
+import { SettingComponent } from './components/setting/setting.component';
+import { QuestComponent } from './components/quest/quest.component';
 
 @NgModule({
   declarations: [
@@ -20,14 +29,32 @@ import { ExaminationComponent } from './examination/examination.component';
     PaymentComponent,
     ProfileComponent,
     ExaminationComponent,
+    DashboardComponent,
+    UserComponent,
+    QuestionComponent,
+    SettingComponent,
+    QuestComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [ {
+    provide: HTTP_INTERCEPTORS,
+    useClass : AuthInterceptor,
+    multi: true
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: Apiinterceptor,
+    multi: true
+  }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

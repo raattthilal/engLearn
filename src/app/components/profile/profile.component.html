@@ -1,0 +1,46 @@
+<section class="firstSection">
+    <nav class="navbar navbar-light bg-dark" >
+        <a class="navbar-brand px-1" [routerLink]="['/home']">
+            <img src="../../../assets/logo.jpeg" class="logo" alt="" />
+            <h5 class="text-white mt-1">Let's Talk English</h5>
+          </a>
+          <div class="col-md-4 text-end px-3">
+            <button class="btn btn-danger" (click)="logOut()">Logout</button>
+          </div>
+      </nav>
+</section>
+<section class="secondSection">
+    <div class="container mt-4">
+        <h4 class="text-muted"> My Profile</h4>
+        <div class="update ">
+            <form [formGroup]="updateData" (ngSubmit)="update()" class="row">
+            <div class="col-md-6">
+                <label for="">First Name</label>
+                <input type="text" class="form-control" id="f-name" formControlName="firstName">
+            </div>
+            <div class="col-md-6 ">
+                <label for="">Last Name</label>
+                <input type="text" class="form-control"  id="l-name" formControlName="lastName">
+            </div>
+            <div class="col-md-6 mt-4">
+                <label for="">Email</label>
+                <input type="email" class="form-control"  formControlName="email">
+            </div>
+            <div class="col-md-6 mt-4">
+                <label for="">Phone</label>
+                <input type="text" class="form-control" id="phone"
+                formControlName="phone">
+            </div>
+            <div class="col-md-6 mt-4">
+                <label for="">Payment Status</label>
+                <h4 *ngIf="paymentStatus=='PAID'" class="text-success text-bold">{{paymentStatus}} <span class="text-secondary" style="font-size: medium;">(100 Rupees)</span></h4>
+                <h4 *ngIf="paymentStatus=='PENDING'" class="text-danger text-bold">{{paymentStatus}} <span class="text-secondary" style="font-size: medium;">(100 Rupees)</span></h4>
+            </div>
+            <div class="w-100 text-center mt-5">
+                <button class="btn btn-lg btn-outline-success"  type="submit">Update Profile</button>
+            </div>
+        </form>
+        </div>
+        
+      </div>
+</section>

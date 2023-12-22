@@ -1,0 +1,35 @@
+.logo{
+    width: 40px;
+    height: 40;
+    border-radius: 35px;
+    margin-left: 20px;
+}
+.secondSection{
+    background-image: url('../../../assets/bg.jpg');
+    min-height: 750px;
+}
+.nav-opt{
+    border-right: 1px rgb(138, 176, 208) solid;
+    border-left: 1px rgb(138, 176, 208) solid;
+    width: 160px;
+    margin: 0px;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgb(45, 40, 57);
+}
+label {
+    font-weight: bold;
+    margin-right: 10px;
+    min-width: 90px;
+  }
+  .update{
+    min-height: 400px;
+    min-width: 450px;
+    border: 1px rgb(184, 225, 226) solid;
+    padding: 3% 2% 4% 10% ; 
+    background: rgba(76, 175, 80, 0.3) 
+  }
+  .box{
+    min-height: 150px;
+    min-width: 250px;;
+  }

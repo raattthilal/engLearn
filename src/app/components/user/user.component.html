@@ -1,0 +1,57 @@
+<section class="firstSection">
+    <nav class="navbar navbar-light bg-dark" >
+        <a class="navbar-brand px-2">
+          <img src="../../../assets/logo.jpeg" class="logo" alt="" />
+          <h5 class="text-white mt-1">Let's Talk English</h5>
+        </a>
+        <div class="nav-opt" [routerLink]="['/dashboard']">
+            <h5 class="text-white">Dashboard</h5> 
+       </div>
+        <div class="nav-opt" [routerLink]="['/users']">
+           <h5 class="text-primary">Users</h5> 
+        </div> 
+        <div class="nav-opt" [routerLink]="['/questions']">
+            <h5 class="text-white">Questions</h5> 
+        </div>
+        <div class="nav-opt" [routerLink]="['/settings']">
+            <h5 class="text-white">Settings</h5> 
+        </div>         
+        <div class="col-md-3 text-end px-3">
+          <button class="btn btn-danger" (click)="logOut()">Logout</button>
+        </div>
+      </nav>
+</section>
+<section class="secondSection">
+    <div class="container mt-3">
+        <h2 class="text-muted">Users List</h2>
+        <div class="mb-3 col-md-5">
+          <input type="text" class="form-control" (input)="filterData($event)" placeholder="Search">
+        </div>
+      <div class="table-responsive">
+        <table class="table table-hover table-success shadow">
+          <thead>
+            <tr>
+              <th (click)="sortData('id')">ID <span [ngClass]="{'arrow-up': sortDirection === 'asc' && sortKey === 'id', 'arrow-down': sortDirection === 'desc' && sortKey === 'id'}"></span></th>
+              <th (click)="sortData('firstName')">FirstName <span [ngClass]="{'arrow-up': sortDirection === 'asc' && sortKey === 'firstName', 'arrow-down': sortDirection === 'desc' && sortKey === 'firstName'}"></span></th>
+              <th (click)="sortData('lastName')">LastName <span [ngClass]="{'arrow-up': sortDirection === 'asc' && sortKey === 'LastName', 'arrow-down': sortDirection === 'desc' && sortKey === 'LastName'}"></span></th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th (click)="sortData('paymentStatus')">PaymentStatus <span [ngClass]="{'arrow-up': sortDirection === 'asc' && sortKey === 'paymentStatus', 'arrow-down': sortDirection === 'desc' && sortKey === 'paymentStatus'}"></span></th>
+              <th>#</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let users of filteredUsers">
+              <td>{{ users.id }}</td>
+              <td>{{ users.firstName }}</td>
+              <td>{{ users.lastName }}</td>
+              <td>{{ users.email }}</td>
+              <td>{{ users.phone }}</td>
+              <td>{{ users.paymentStatus }} <span *ngIf="users.paymentStatus=='PAID'"><i class="fa fa-check-circle" style="color: green;" aria-hidden="true"></i></span></td>
+                <td><span style="cursor: pointer;" (click)="delete(users.id)"><i class="fa fa-trash-o" style="font-size:20px;color:red"></i></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </div>
+</section>

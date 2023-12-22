@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../../user.service';
 declare var Razorpay: any;
 @Component({
   selector: 'app-payment',
@@ -8,17 +9,19 @@ declare var Razorpay: any;
 })
 
 export class PaymentComponent implements OnInit {
+   userid = '';
    prefill = {
     name:'',
     phone:'',
     email:''
   }
-  constructor(private router: Router){}
+  constructor(private router: Router,private userService:UserService){}
   logOut(){
-    localStorage.removeItem('token');
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
   ngOnInit() {
+    this.userid = localStorage.getItem('id') ?? '';
     this.prefill.email = localStorage.getItem('email') ?? '';
     this.prefill.name = localStorage.getItem('name') ?? '';
     this.prefill.phone = localStorage.getItem('phone') ?? '';
@@ -30,8 +33,8 @@ export class PaymentComponent implements OnInit {
       description: 'Purchase Course',
       currency: 'INR',
       amount: 10000,
-      name:'Lets Talk English',
-      key:'rzp_test_NUASEzphbNqdHj',
+      name:`Let's Talk English`,
+      key:'rzp_test_hA91y8eiLIPlNl',
       image:'../../../assets/logo.jpeg',
       prefill:this.prefill,
       theme:{
@@ -46,12 +49,22 @@ export class PaymentComponent implements OnInit {
       },
       handler:(res:any)=>{
         console.log(res);
-        this.router.navigate(['/home'])
+        let update={
+          verified:true,
+          paymentId:res.razorpay_payment_id
+        }
+        this.userService.updateUser(this.userid,update).subscribe(res=>{
+          console.log(res);
+          if(res.success){
+            localStorage.setItem('payment',"PAID")
+          }
+        })
+        this.router.navigate(['/course-content'])
       }
     }
   
     const successCallback = (payment_id:any)=>{
-      console.log(payment_id);
+      console.log("payment_id:"+payment_id);
     }
     const failureCallback = (e:any)=>{
       console.log(e);

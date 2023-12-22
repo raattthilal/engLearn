@@ -1,0 +1,47 @@
+<section class="firstSection">
+    <nav class="navbar navbar-light bg-dark" >
+        <a class="navbar-brand px-2">
+          <img src="../../../assets/logo.jpeg" class="logo" alt="" />
+          <h5 class="text-white mt-1">Let's Talk English</h5>
+        </a>
+        <div class="nav-opt" [routerLink]="['/dashboard']">
+            <h5 class="text-primary">Dashboard</h5> 
+       </div>
+        <div class="nav-opt" [routerLink]="['/users']">
+           <h5 class="text-white">Users</h5> 
+        </div> 
+        <div class="nav-opt" [routerLink]="['/questions']">
+            <h5 class="text-white">Questions</h5> 
+        </div>
+        <div class="nav-opt" [routerLink]="['/settings']">
+            <h5 class="text-white">Settings</h5> 
+        </div>         
+        <div class="col-md-3 text-end px-3">
+          <button class="btn btn-danger" (click)="logOut()">Logout</button>
+        </div>
+      </nav>
+</section>
+<section class="secondSection">
+    <div class="container mt-4">
+        <h4 class="text-muted"> Dashboard</h4>
+        <div class="update d-flex w-100 rounded shadow">
+            <div class="col-md-5">
+                <div class="col-md-6 mt-5 text-center shadow rounded box">
+                    <h3 class="text-dark">Total Users</h3><hr>
+                    <h2 class="text-danger">{{totalUser}}</h2>
+                </div>
+                <div class="col-md-6 mt-5 text-center shadow rounded box">
+                    <h3 class="text-dark">Total Paid Users</h3><hr>
+                    <h2 class="text-danger">{{paidUser.length}}</h2>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="col-md-6 mt-5 text-center shadow rounded box">
+                    <h3 class="text-dark">Total Amount Recieved</h3><hr>
+                    <h2 class="text-danger">{{paidUser.length * 100  |currency:'INR':'symbol' }}</h2>
+                </div>
+            </div>
+        </div>
+        
+      </div>
+</section>

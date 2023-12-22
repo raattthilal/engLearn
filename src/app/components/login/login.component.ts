@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -10,20 +11,20 @@ import { Router } from '@angular/router';
 
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router){
+  constructor(private router: Router, private authentication:AuthenticationService){
     }
     login = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
     })
   
 
     register = new FormGroup({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
-      phone: new FormControl(''),
-      email: new FormControl(''),
-      password: new FormControl(''),
+      firstName: new FormControl('',[Validators.required,Validators.minLength(3)]),
+      lastName: new FormControl('',[Validators.required,Validators.minLength(3)]),
+      phone: new FormControl('',[Validators.required,Validators.minLength(10)]),
+      email: new FormControl('',Validators.email),
+      password: new FormControl('',[Validators.required,Validators.minLength(5)]),
     })
   ngOnInit() {
     const token = localStorage.getItem('token');
@@ -31,20 +32,44 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home'])
       }
   }
-
+forget(){
+  alert("forget")
+}
   submit() {
     if(this.login.valid){
-      console.log(this.login.value);
-      
-      localStorage.setItem('token','xyz')
-      //bind API call
-      alert("Login Successfully!!")
-      this.router.navigate(['/home'])
+      this.authentication.login(this.login.value).subscribe(res=>{
+        if(res?.success==true && res?.token){
+          localStorage.setItem('token',res.token);
+          localStorage.setItem('role',res.user?.role);
+          localStorage.setItem('id',res.user?.id);
+          if(res.user.role === 'LEARNER'){
+            this.router.navigate(['/home']);
+          }else{
+            this.router.navigate(['/dashboard'])
+          }
+        }else{
+          alert(res.message);
+          this.login.reset();
+        }
+        
+      });    
     }
   }
+
   signup(){
-    if(this.register.valid)
-    console.warn(this.register.value);
+    if(this.register.valid){
     //bind signup API
+      this.authentication.signup(this.register.value).subscribe(res=>{
+       if(res?.success){
+         alert(res.message);
+         this.register.reset();
+       }else{
+        alert(res.message);
+        this.register.reset();
+       }
+      })
+    }else{
+      alert("not valid")
+    }
   }
 }

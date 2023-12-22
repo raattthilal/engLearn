@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-home',
@@ -7,21 +8,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  constructor(private router: Router){
+  constructor(private router: Router,private userService:UserService){
   }
-  userPaymentStatus = 'NotPaid';
-
+  userPaymentStatus = '';
+  userverified = false;
   ngOnInit(): void {
-   this.userPaymentStatus = localStorage.getItem('userPaymentStatus') ?? 'NotPaid';
+    let id = localStorage.getItem('id');
+    this.userService.getUserById(id).subscribe(res=>{
+      if(res.success){
+          localStorage.setItem('payment',res.data?.paymentStatus);
+          localStorage.setItem('name',res.data?.firstName+res.data?.lastName);
+          localStorage.setItem('email',res.data?.email);
+          localStorage.setItem('phone',res.data?.phone);
+        this.userverified = res.data.verified ?? false
+      }
+    })
+   this.userPaymentStatus = localStorage.getItem('payment') ?? 'PENDING';
+
   }
   
   logOut(){
-    localStorage.removeItem('token');
+    localStorage.clear();
     this.router.navigate(['/login'])
   }
 
   beginOrPayment(){
-    if(this.userPaymentStatus==='DonePayment'){
+    if(this.userPaymentStatus==='PAID' && this.userverified){
       this.router.navigate(['/course-content'])
     }else{
       this.router.navigate(['/payment'])

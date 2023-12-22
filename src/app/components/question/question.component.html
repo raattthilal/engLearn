@@ -1,0 +1,63 @@
+<section class="firstSection">
+    <nav class="navbar navbar-light bg-dark" >
+        <a class="navbar-brand px-2">
+          <img src="../../../assets/logo.jpeg" class="logo" alt="" />
+          <h5 class="text-white mt-1">Let's Talk English</h5>
+        </a>
+        <div class="nav-opt" [routerLink]="['/dashboard']">
+            <h5 class="text-white">Dashboard</h5> 
+       </div>
+        <div class="nav-opt" [routerLink]="['/users']">
+           <h5 class="text-white">Users</h5> 
+        </div> 
+        <div class="nav-opt" [routerLink]="['/questions']">
+            <h5 class="text-primary">Questions</h5> 
+        </div>
+        <div class="nav-opt" [routerLink]="['/settings']">
+            <h5 class="text-white">Settings</h5> 
+        </div>         
+        <div class="col-md-3 text-end px-3">
+          <button class="btn btn-danger" (click)="logOut()">Logout</button>
+        </div>
+      </nav>
+</section>
+<section class="secondSection">
+
+<div class="container mt-3">
+    <h2 class="text-muted">Questions List</h2>
+    <div class="col-md-3 text-end w-100">
+        <button class="btn btn-success" (click)="createQuestion()">Create Question</button>
+      </div>
+      <div class="mb-3 col-md-5">
+          <input type="text" class="form-control" (input)="filterData($event)" placeholder="Search">
+      </div>
+      
+      <div class="table-responsive">
+        <table class="table table-hover table-success shadow">
+      <thead class="t-head">
+        <tr>
+          <th (click)="sortData('question')">Question <span [ngClass]="{'arrow-up': sortDirection === 'asc' && sortKey === 'question', 'arrow-down': sortDirection === 'desc' && sortKey === 'question'}"></span></th>
+          <th> opt-A </th>
+          <th> opt-B </th>
+          <th> opt-C </th>
+          <th> opt-D </th>
+          <th> # </th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let quest of filteredQuestions">
+          <td>{{ quest.question }}</td>
+          <td>{{ quest.options_1 }}</td>
+          <td>{{ quest.options_2 }}</td>
+          <td>{{ quest.options_3 }}</td>
+          <td>{{ quest.options_4 }}</td>
+          <td><span (click)="edit(quest.id)"><i class="fa fa-edit" style="font-size:36px"></i></span></td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+  
+</section>

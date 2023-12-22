@@ -5,7 +5,7 @@
     min-width: 550px;
 }
 .signup{
-    margin-top: 10%;
+    margin-top: 5%;
     padding: 20px 25px;
     border-radius: 15px;
     min-width: 650px;
@@ -37,7 +37,7 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 .loginform{
-    margin-right: 5%;
+    margin-right: 8%;
 }
 .forget{
     text-align: end;

@@ -5,17 +5,17 @@
       <h5 class="text-white mt-1">Let's Talk English</h5>
     </a>
     <form [formGroup]="login" (ngSubmit)="submit()">
-    <div class="row loginform">
+    <div class="row d-flex loginform">
       <div class="form-group col-md-5">
         <label for="username" class="text-secondary">Username</label>
         <input
-          type="email"
+          type="text"
           class="form-control mt-1"
-          id="exampleInputEmail1"
+          id="username"
           aria-describedby="emailHelp"
-          placeholder="Enter email"
-          formControlName="email"
-          required=""
+          placeholder="email / phone"
+          formControlName="username"
+          required
         />
       </div>
       <div class="form-group col-md-5">
@@ -24,15 +24,16 @@
           type="password"
           class="form-control mt-1"
           formControlName="password"
-          id="exampleInputPassword1"
-          placeholder="Enter password"
-          required=""
+          id="password"
+          placeholder="password"
+          required
         />
         <p class="forget">
-          <a [routerLink]="['/forget-password']">Forgot password</a>
+          <a href="" (click)="forget()">Forgot password</a>
         </p>
+        
       </div>
-      <div class="col-md-2 mt-4">
+      <div class="col-md-2 mt-4 log">
         <button type="submit" class="btn btn-primary login-btn">
           Login
         </button>
@@ -59,6 +60,7 @@
                 formControlName="firstName"
                 aria-describedby="nameHelp"
                 placeholder="Enter first name"
+                minlength="3"
                 required
               />
             </div>
@@ -71,6 +73,7 @@
                 formControlName="lastName"
                 aria-describedby="nameHelp"
                 placeholder="Enter last name"
+                minlength="3"
                 required
               />
             </div>
@@ -83,6 +86,7 @@
                 formControlName="phone"
                 aria-describedby="nameHelp"
                 placeholder="Enter phone number"
+                minlength="10"
                 required
               />
             </div>
@@ -99,19 +103,20 @@
               />
             </div>
             <div class="form-group mt-3">
-              <label for="password" class="text-secondary">Password</label>
+              <label for="spassword" class="text-secondary">Password</label>
               <input
                 type="password"
                 class="form-control"
-                id="password"
+                id="spassword"
                 formControlName="password"
                 placeholder="Password"
+                minlength="5"
                 required
               />
             </div>
 
             <div class="text-center mt-3">
-              <button [disabled]="!register.valid" type="submit" class="btn btn-success mt-3 signup-btn">
+              <button  type="submit" class="btn btn-success mt-3 signup-btn">
                 Signup
               </button>
             </div>
