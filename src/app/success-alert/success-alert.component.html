@@ -1,0 +1,6 @@
+<div *ngIf="successMessage" class="alert alert-success alert-dismissible fade show mt-1 al" role="alert">
+    {{ successMessage }}
+    <button type="button" class="btn-close" aria-label="Close" (click)="dismissAlert()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>

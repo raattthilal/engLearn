@@ -28,13 +28,12 @@
             <form [formGroup]="settings" (ngSubmit)="update()" class="row">
             <div class="col-md-6">
                 <label for="">Course Fees</label>
-                <input type="number" class="form-control" id="amount" formControlName="amount" placeholder="course amount">
+                <input type="number" class="form-control" id="feesAmount" formControlName="feesAmount" placeholder="Course Fees Amount">
             </div>
-            <!-- <div class="col-md-6 ">
-                <label for="">Last Name</label>
-                <input type="text" class="form-control"  id="l-name" formControlName="lastName">
-            </div> -->
-            
+            <div class="col-md-6">
+                <label for="">Pass Percentage of examination</label>
+                <input type="number" class="form-control" id="passPercentage" formControlName="passPercentage" placeholder="Pass Percentage">
+            </div>
             <div class="w-100 text-center mt-5">
                 <button class="btn btn-lg btn-outline-success"  type="submit">Update Settings</button>
             </div>

@@ -1,1 +1,65 @@
-<p>examination works!</p>
+<section class="firstSection">
+    <nav class="navbar navbar-light bg-primary" >
+        <a class="navbar-brand px-1" [routerLink]="['/home']">
+            <img src="../../../assets/logo.jpeg" class="logo" alt="" />
+            <h5 class="text-white mt-1">Let's Talk English</h5>
+          </a>
+          
+          <div class="col-md-4 text-end px-3">
+            <button class="btn btn-danger" (click)="logOut()">Logout</button>
+          </div>
+      </nav>
+</section>
+<section class="secondSection">
+    <app-success-alert></app-success-alert>
+    <div class="container mt-4">
+        <h4 class="text-muted">Examination</h4>
+        <div class="update ">
+            <form  class="row">
+            <div class="col-md-12">
+                <label for="" class="px-3">Question {{ currentQuestionIndex + 1 }} / {{quizQuestions.length}}</label>
+                <h4 class="text-dark mt-3 px-3">{{ quizQuestions[currentQuestionIndex].question }}</h4>
+            </div>
+            <hr class="mt-3">
+            <div class="col-md-6 mt-4 box" (click)="selectedAns('options_1',quizQuestions[currentQuestionIndex].options_1)">
+             <span>{{quizQuestions[currentQuestionIndex].options_1}}</span>
+            </div>
+            <div class="col-md-6 mt-4 box" (click)="selectedAns('options_2',quizQuestions[currentQuestionIndex].options_2)">
+                <span>{{quizQuestions[currentQuestionIndex].options_2}}</span>
+            </div>
+            <div class="col-md-6 mt-4 box" (click)="selectedAns('options_3',quizQuestions[currentQuestionIndex].options_3)">
+                 <span>{{quizQuestions[currentQuestionIndex].options_3}}</span>
+            </div>
+            <div class="col-md-6 mt-4 box" (click)="selectedAns('options_4',quizQuestions[currentQuestionIndex].options_4)">
+              <span>{{quizQuestions[currentQuestionIndex].options_4}}</span>
+            </div>
+            
+            <div class="mt-1">
+                <label for="" class="px-3 text-success">Selected :</label> <span class="text-primary" style="font-style: italic; font-weight: bold;">{{selectedAnswer}}</span>
+            </div>
+           
+            <div class="w-100 text-end mt-5">
+                <button *ngIf="!showModal" [disabled]="selectedAnswer==''" class="btn btn-lg btn-primary rounded" (click)="nextQuestion()"> Next <span class="arrow">&#9654;</span> </button>
+                <button *ngIf="showModal"  [disabled]="selectedAnswer==''" class="btn btn-lg btn-primary rounded"   data-bs-toggle="modal" data-bs-target="#submitModal"> Finish <span class="arrow">&#9654;</span> </button>
+                
+            </div>
+        </form>
+        </div>
+        
+      </div>
+   <!-- Mo dal -->
+<div class="modal fade"id="submitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you sure to submit the Answers</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       
+        <div class="modal-footer ">
+          <button type="button" class="btn btn-primary rounded" data-bs-dismiss="modal" aria-label="Close" (click)="nextQuestion()"> Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

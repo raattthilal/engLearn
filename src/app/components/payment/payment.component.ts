@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../user.service';
+import { SuccessAlertService } from 'src/app/success-alert.service';
+import { SettingsService } from 'src/app/settings.service';
 declare var Razorpay: any;
 @Component({
   selector: 'app-payment',
@@ -10,21 +12,29 @@ declare var Razorpay: any;
 
 export class PaymentComponent implements OnInit {
    userid = '';
+   paymentStatus!:string;
    prefill = {
     name:'',
     phone:'',
     email:''
   }
-  constructor(private router: Router,private userService:UserService){}
+  amount!:number;
+  constructor(private router: Router,private userService:UserService,private successAlertService: SuccessAlertService,private setting: SettingsService){}
   logOut(){
     localStorage.clear();
     this.router.navigate(['/login']);
   }
   ngOnInit() {
+    this.paymentStatus = localStorage.getItem('payment')??'PENDING';
     this.userid = localStorage.getItem('id') ?? '';
     this.prefill.email = localStorage.getItem('email') ?? '';
     this.prefill.name = localStorage.getItem('name') ?? '';
     this.prefill.phone = localStorage.getItem('phone') ?? '';
+    this.setting.getSettings().subscribe(res=>{
+      if(res.success){
+        this.amount = res.data.feesAmount;
+      }
+    })
   }
 
  
@@ -32,7 +42,7 @@ export class PaymentComponent implements OnInit {
     const razorpayOptions={
       description: 'Purchase Course',
       currency: 'INR',
-      amount: 10000,
+      amount: this.amount*100,
       name:`Let's Talk English`,
       key:'rzp_test_hA91y8eiLIPlNl',
       image:'../../../assets/logo.jpeg',
@@ -56,6 +66,7 @@ export class PaymentComponent implements OnInit {
         this.userService.updateUser(this.userid,update).subscribe(res=>{
           console.log(res);
           if(res.success){
+            this.successAlertService.showSuccess("Payment Successfull. Thank you");
             localStorage.setItem('payment',"PAID")
           }
         })
@@ -69,7 +80,11 @@ export class PaymentComponent implements OnInit {
     const failureCallback = (e:any)=>{
       console.log(e);
     } 
-    Razorpay.open(razorpayOptions, successCallback, failureCallback)
+    if(this.paymentStatus=='PAID'){
+      this.router.navigate(['/course-content'])
+    }else{
+      Razorpay.open(razorpayOptions, successCallback, failureCallback)
+    }
 
 }
   // createRzpayOrder(data:any) {

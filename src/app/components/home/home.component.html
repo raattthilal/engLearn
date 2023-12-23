@@ -17,7 +17,7 @@
 
 <header class="d-flex justify-content-center">
     <img src="../../../assets/logo.jpeg" class="logo1" alt="" />
-    <h1>Welcome to Let's Talk English</h1>
+    <h1>Welcome to <span style="font-style: italic;">  Let's Talk English</span></h1>
 </header>
 <section class="secondSection">
     <div class="container">
@@ -59,14 +59,15 @@
     <h5>Start Your Journey</h5>
     <p>The Let's Talk English is your passport to English fluency. Begin your adventure today!</p>
     
-    <h5>Need Help? Contact Us</h5>
+    <h5>Need Help? <span><a target="_blank" href="https://wa.me/+919562888488">Contact Us</a></span></h5>
     <p>Our support team is ready to assist you.</p>
     <div class="text-center mt-3">
-    <a class="btn1 mt-3" (click)="beginOrPayment()">Start Your Journey</a>
+    <button class="btn btn-primary btn-lg mt-3 rounded shadow" (click)="beginOrPayment()">Start Your Journey</button>
     </div>
     </div>
 </section>
 
 <footer>
     <p>Stay Inspired and Keep Learning!</p>
+    <p>&copy; {{ currentYear }}  Realroom360. All rights reserved.</p>
 </footer>

@@ -1,3 +1,8 @@
+.firstSection{
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
 .logo{
     width: 40px;
     height: 40;
@@ -15,7 +20,8 @@ header {
     background-color: #1d5da3;
     color: #fff;
     text-align: center;
-    padding: 32px 0;
+    padding: 20px 0;
+    margin-top: 100px;
 }
 h1 {
     font-size: 48px;
@@ -27,6 +33,7 @@ h1 {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    background: rgba(111, 197, 193, 0.3) 
 }
 h2 {
     font-size: 32px;
@@ -47,21 +54,7 @@ h2 {
 .feature p {
     font-size: 18px;
 }
-.btn1 {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 15px 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 24px;
-    margin-top: 20px;
-    border-radius: 10px;
-    transition: background-color 0.3s;
-}
-.btn1:hover {
-    background-color: #0056b3;
-}
+
 footer {
     background-color: #1d5da3;
     color: #fff;

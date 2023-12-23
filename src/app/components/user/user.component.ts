@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SuccessAlertService } from 'src/app/success-alert.service';
 import { UserService } from 'src/app/user.service';
 interface USER {
   id: string;
@@ -16,7 +17,7 @@ interface USER {
 })
 
 export class UserComponent implements OnInit {
-  constructor(private router: Router, private userService:UserService){
+  constructor(private router: Router, private userService:UserService,private successAlertService: SuccessAlertService){
   }
   users:USER[]=[];
   filteredUsers:USER[]=[];
@@ -35,7 +36,7 @@ export class UserComponent implements OnInit {
   delete(id:any){
     this.userService.deleteUser(id).subscribe(res=>{
       if(res.success){
-        alert(res.message);
+        this.successAlertService.showSuccess(res.message);
         this.ngOnInit();
       }
     })

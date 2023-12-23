@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuestionService } from 'src/app/question.service';
+import { SuccessAlertService } from 'src/app/success-alert.service';
 
 @Component({
   selector: 'app-quest',
@@ -10,7 +11,7 @@ import { QuestionService } from 'src/app/question.service';
 })
 export class QuestComponent implements OnInit {
   id!:string
-  constructor(private route:ActivatedRoute,private router:Router, private questService:QuestionService) { }
+  constructor(private route:ActivatedRoute,private router:Router, private questService:QuestionService,private successAlertService: SuccessAlertService) { }
 
   updateData = new FormGroup({
     question: new FormControl(''),
@@ -50,10 +51,10 @@ export class QuestComponent implements OnInit {
     if(this.id.length){
       this.questService.deleteQuestion(this.id).subscribe(res=>{
         if(res.success){
-          alert(res.message)
+          this.successAlertService.showSuccess(res.message);
           this.router.navigate(['/questions']);
         }else{
-          alert(res.message);
+          this.successAlertService.showSuccess(res.message);
         }
       })
     }
@@ -63,10 +64,10 @@ export class QuestComponent implements OnInit {
       if(this.initalValues != this.updateData.value){
         this.questService.updateQuestion(this.id,this.updateData.value).subscribe(res=>{
           if(res.success){
-            alert("Updated")
+            this.successAlertService.showSuccess(res.message);
             this.router.navigate(['/questions']);
           }else{
-            alert(res.message);
+            this.successAlertService.showSuccess(res.message);
           }
         })
       }
@@ -74,10 +75,10 @@ export class QuestComponent implements OnInit {
       if(this.updateData.valid){
         this.questService.createQuestion(this.updateData.value).subscribe(res=>{
           if(res.success){
-            alert("Question Created");
+            this.successAlertService.showSuccess(res.message);
             this.router.navigate(['/questions']);
           }else{
-            alert(res.message);
+            this.successAlertService.showSuccess(res.message);
           }
         })
       }

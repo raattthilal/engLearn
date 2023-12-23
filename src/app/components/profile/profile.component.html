@@ -10,6 +10,7 @@
       </nav>
 </section>
 <section class="secondSection">
+    <app-success-alert></app-success-alert>
     <div class="container mt-4">
         <h4 class="text-muted"> My Profile</h4>
         <div class="update ">
@@ -35,6 +36,11 @@
                 <label for="">Payment Status</label>
                 <h4 *ngIf="paymentStatus=='PAID'" class="text-success text-bold">{{paymentStatus}} <span class="text-secondary" style="font-size: medium;">(100 Rupees)</span></h4>
                 <h4 *ngIf="paymentStatus=='PENDING'" class="text-danger text-bold">{{paymentStatus}} <span class="text-secondary" style="font-size: medium;">(100 Rupees)</span></h4>
+            </div>
+            <div *ngIf="result.result!=''" class="col-md-6 mt-4">
+                <label for="">Exam Result</label>
+                <h4 *ngIf="result.result=='PASS'" class="text-success text-bold">{{result.result}}</h4>
+                <h4 *ngIf="result.result=='FAILED'" class="text-danger text-bold">{{result.result}}</h4>
             </div>
             <div class="w-100 text-center mt-5">
                 <button class="btn btn-lg btn-outline-success"  type="submit">Update Profile</button>

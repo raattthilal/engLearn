@@ -19,6 +19,7 @@ import { UserComponent } from './components/user/user.component';
 import { QuestionComponent } from './components/question/question.component';
 import { SettingComponent } from './components/setting/setting.component';
 import { QuestComponent } from './components/quest/quest.component';
+import { SuccessAlertComponent } from './success-alert/success-alert.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { QuestComponent } from './components/quest/quest.component';
     QuestionComponent,
     SettingComponent,
     QuestComponent,
+    SuccessAlertComponent,
     
   ],
   imports: [

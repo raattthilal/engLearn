@@ -1,6 +1,9 @@
 .logo{
     width: 40px;
-    height: 40;
+    height: 40px;
     border-radius: 35px;
     margin-left: 20px;
+}
+.firstSection{
+    max-height: 90px;
 }

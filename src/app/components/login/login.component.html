@@ -29,7 +29,7 @@
           required
         />
         <p class="forget">
-          <a href="" (click)="forget()">Forgot password</a>
+          <a data-bs-toggle="modal" data-bs-target="#forgetModal" class="forget" style="cursor: pointer;">Forgot password</a>
         </p>
         
       </div>
@@ -44,6 +44,40 @@
   </nav>
 </section>
 <section class="secondSection">
+  <app-success-alert></app-success-alert>
+<!-- Mo dal -->
+<div class="modal fade" id="forgetModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Forget Password</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form  [formGroup]="forgetPassword">
+          <div class="container row">
+            <div class="form-group col-md-12">
+              <label for="f-username" class="text-dark">Username</label>
+              <input
+                type="text"
+                class="form-control mt-2"
+                id="f-username"
+                aria-describedby="emailHelp"
+                placeholder="email / phone"
+                formControlName="username"
+                required
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer ">
+        <button type="button" class="btn btn-primary rounded" (click)="forget()" data-bs-dismiss="modal" aria-label="Close">Forget Password</button>
+      </div>
+    </div>
+  </div>
+</div>
+
   <div class="container row">
     <div class="container col-md-auto">
       <div class="signup shadow">

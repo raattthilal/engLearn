@@ -23,4 +23,10 @@ export class QuestionService {
   deleteQuestion(id:string){
     return this.http.delete<any>(`5000/questions/delete/${id}`)
   }
+  submitQuiz(body:any){
+    return this.http.post<any>('5000/quizs/create/',body);
+  }
+  getResult(){
+    return this.http.get<any>('5000/quizs/get/');
+  }
 }

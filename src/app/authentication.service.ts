@@ -17,6 +17,10 @@ export class AuthenticationService {
     return this.http.post<any>('5000/authenticate/login',data)
   }
 
+  forgetPass(data:any){
+    return this.http.post<any>('5000/authenticate/forgetpassword',data)
+  }
+
     // Example: Check whether the user is authenticated
     isAuthenticated(): boolean {
       this.token = localStorage.getItem('token');

@@ -4,11 +4,29 @@
             <img src="../../../assets/logo.jpeg" class="logo" alt="" />
             <h5 class="text-white mt-1">Let's Talk English</h5>
           </a>
+          <div class="text-center"><button class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#startModal" >Start Exam <i class="fa fa-file-text-o" aria-hidden="true"></i></button></div>
           <div class="col-md-4 text-end px-3">
             <button class="btn btn-danger" (click)="logOut()">Logout</button>
           </div>
       </nav>
 </section>
 <section class="w-100">
-    <iframe src="https://eng.realroom360.com/mobile/index.html" frameborder="0" width="100%" style="position: absolute; height: 90%; top:10%;"></iframe>
+    <iframe src="https://eng.realroom360.com/mobile/index.html" frameborder="0" width="100%" style="position: absolute; height: 90%; top:auto;"></iframe>
 </section>
+<div class="modal fade"id="startModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-danger" id="exampleModalLabel">Ready you sure.?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-secondary">Are you completed the entire module to start the Examination..?</p>
+      </div>
+      <div class="modal-footer ">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary rounded" data-bs-dismiss="modal" aria-label="Close"  [routerLink]="['/examination']" > Begin</button>
+      </div>
+    </div>
+  </div>
+</div>

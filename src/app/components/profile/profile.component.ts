@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../../user.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { SuccessAlertService } from 'src/app/success-alert.service';
+import { QuestionService } from 'src/app/question.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,11 +11,15 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit{
-  constructor(private router: Router,private userService: UserService){}
+  constructor(private router: Router,private userService: UserService,private successAlertService: SuccessAlertService,private questionService:QuestionService){}
   id= '';
   paymentStatus='';
   public initalValues:any;
 
+  result={
+    result:'',
+    totalscore:''
+  }
   updateData = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
@@ -36,6 +42,14 @@ export class ProfileComponent implements OnInit{
         this.initalValues = this.updateData.value;
       }
     })
+    this.getResult();
+  }
+  getResult(){
+    this.questionService.getResult().subscribe(res=>{
+      if(res.success){
+        this.result=res.data;
+      }
+    })
   }
   logOut(){
     localStorage.clear();
@@ -45,7 +59,7 @@ export class ProfileComponent implements OnInit{
     if(this.initalValues != this.updateData.value){
       this.userService.updateUser(this.id,this.updateData.value).subscribe(res=>{
         if(res.success){
-          alert("Updated");
+          this.successAlertService.showSuccess(res.message);
           this.router.navigate(['/home']);
         }
       })

@@ -21,3 +21,13 @@ label {
     padding: 6% 10% 3% 10%;  
     background: rgba(76, 175, 80, 0.3) 
   }
+  .alert-success {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    margin: 0;
+    border-radius: 0;
+    text-align: center;
+  }

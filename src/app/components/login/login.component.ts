@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/authentication.service';
+import { SuccessAlertService } from 'src/app/success-alert.service';
 
 @Component({
   selector: 'app-login',
@@ -11,13 +12,16 @@ import { AuthenticationService } from 'src/app/authentication.service';
 
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private authentication:AuthenticationService){
+  constructor(private router: Router, private authentication:AuthenticationService, private successAlertService: SuccessAlertService){
     }
     login = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
     })
   
+    forgetPassword = new FormGroup({
+      username: new FormControl('',Validators.required)
+    })
 
     register = new FormGroup({
       firstName: new FormControl('',[Validators.required,Validators.minLength(3)]),
@@ -32,8 +36,15 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/home'])
       }
   }
+  
 forget(){
-  alert("forget")
+  if(this.forgetPassword.valid){    
+    this.authentication.forgetPass(this.forgetPassword.value).subscribe(res=>{
+      if(res.success){
+        this.successAlertService.showSuccess(res.message);
+      }
+    })
+  }
 }
   submit() {
     if(this.login.valid){
@@ -48,7 +59,7 @@ forget(){
             this.router.navigate(['/dashboard'])
           }
         }else{
-          alert(res.message);
+          this.successAlertService.showSuccess(res.message);
           this.login.reset();
         }
         
@@ -61,15 +72,15 @@ forget(){
     //bind signup API
       this.authentication.signup(this.register.value).subscribe(res=>{
        if(res?.success){
-         alert(res.message);
+         this.successAlertService.showSuccess(res.message);
          this.register.reset();
        }else{
-        alert(res.message);
+        this.successAlertService.showSuccess(res.message);
         this.register.reset();
        }
       })
     }else{
-      alert("not valid")
+      this.successAlertService.showSuccess('Invalid Form');
     }
   }
 }

@@ -28,8 +28,6 @@
 .login-btn{
     border-radius: 20px;
     width: 115px;
-}:hover{
-    color: black;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -47,3 +45,18 @@ input::-webkit-inner-spin-button {
     background-image: url('../../../assets/bg.jpg');
     min-height: 800px;
 }
+.alert-success {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    margin: 0;
+    border-radius: 0;
+    text-align: center;
+  }
+  label {
+    font-weight: bold;
+    margin-right: 10px;
+    min-width: 90px;
+  }

@@ -12,7 +12,9 @@ export class HomeComponent implements OnInit {
   }
   userPaymentStatus = '';
   userverified = false;
+  currentYear!: number;
   ngOnInit(): void {
+    this.currentYear = new Date().getFullYear();
     let id = localStorage.getItem('id');
     this.userService.getUserById(id).subscribe(res=>{
       if(res.success){
