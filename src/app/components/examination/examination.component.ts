@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { CertificateService } from 'src/app/certificate.service';
 import { QuestionService } from 'src/app/question.service';
 import { SuccessAlertService } from 'src/app/success-alert.service';
 interface QUESTION {
@@ -16,7 +17,7 @@ interface QUESTION {
   styleUrls: ['./examination.component.css']
 })
 export class ExaminationComponent implements OnInit {
-  constructor(private router: Router, private questService: QuestionService, private successAlertService: SuccessAlertService) {
+  constructor(private router: Router, private questService: QuestionService, private successAlertService: SuccessAlertService,private cert: CertificateService) {
   }
   quizQuestions: QUESTION[] = [];
   showModal: boolean = false;
@@ -71,9 +72,16 @@ export class ExaminationComponent implements OnInit {
       if (this.eachAnswer.id != '' && this.eachAnswer.answerKey != '') {
         this.setVal();
         this.questService.submitQuiz({ answers: this.quizAnswerOutput }).subscribe(res => {
-          console.log(res);
           if(res.success){
             this.successAlertService.showSuccess(res.message);
+            if(res.data.result=="PASS"){
+              localStorage.setItem('exam','PASS')
+              this.cert.createCertificate().subscribe(certif =>{
+                if(certif.success){
+                  this.successAlertService.showSuccess(certif.message);
+                }
+              })
+            }
             this.router.navigate(['/profile']);
           }else{
             this.successAlertService.showSuccess(res.message);

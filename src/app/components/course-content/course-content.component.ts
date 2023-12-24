@@ -8,13 +8,14 @@ import { Router } from '@angular/router';
 })
 export class CourseContentComponent implements OnInit{
   userPaymentStatus!:string;
-
+  exam!:string;
   constructor(private router: Router){}
   ngOnInit(): void {
    this.userPaymentStatus = localStorage.getItem('payment') ?? 'PENDING';
     if(this.userPaymentStatus!='PAID'){
       this.router.navigate(['/payment'])
     }
+    this.exam = localStorage.getItem('exam') ?? "NOTATTEND"
   }
 
   logOut(){

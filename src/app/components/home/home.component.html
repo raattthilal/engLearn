@@ -62,7 +62,8 @@
     <h5>Need Help? <span><a target="_blank" href="https://wa.me/+919562888488">Contact Us</a></span></h5>
     <p>Our support team is ready to assist you.</p>
     <div class="text-center mt-3">
-    <button class="btn btn-primary btn-lg mt-3 rounded shadow" (click)="beginOrPayment()">Start Your Journey</button>
+    <button *ngIf="userPaymentStatus=='PENDING'" class="btn btn-primary btn-lg mt-3 rounded shadow" [routerLink]="['/payment']">Start Your Journey</button>
+    <button *ngIf="userPaymentStatus=='PAID'" [disabled]="userverified!=true" class="btn btn-primary btn-lg mt-3 rounded shadow" [routerLink]="['/course-content']">Start Course</button>
     </div>
     </div>
 </section>

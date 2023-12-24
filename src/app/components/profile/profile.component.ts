@@ -4,6 +4,7 @@ import { UserService } from '../../user.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { SuccessAlertService } from 'src/app/success-alert.service';
 import { QuestionService } from 'src/app/question.service';
+import { CertificateService } from 'src/app/certificate.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,11 +12,12 @@ import { QuestionService } from 'src/app/question.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit{
-  constructor(private router: Router,private userService: UserService,private successAlertService: SuccessAlertService,private questionService:QuestionService){}
+  constructor(private router: Router,private userService: UserService,private successAlertService: SuccessAlertService,private questionService:QuestionService,private certif: CertificateService){}
   id= '';
   paymentStatus='';
   public initalValues:any;
-
+  certificateUrl = '';
+  title='';
   result={
     result:'',
     totalscore:''
@@ -48,6 +50,12 @@ export class ProfileComponent implements OnInit{
     this.questionService.getResult().subscribe(res=>{
       if(res.success){
         this.result=res.data;
+        this.certif.getCertificate().subscribe(res=>{
+          if(res.success){
+            this.certificateUrl=res.data.url;
+            this.title = res.data.title
+          }
+        })
       }
     })
   }

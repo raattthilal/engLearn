@@ -40,6 +40,10 @@
             <div *ngIf="result.result!=''" class="col-md-6 mt-4">
                 <label for="">Exam Result</label>
                 <h4 *ngIf="result.result=='PASS'" class="text-success text-bold">{{result.result}}</h4>
+                <div *ngIf="certificateUrl!=''" class="certificate text-center d-flex mt-1">
+                    <h5>Certificate</h5>
+                    <a [href]="certificateUrl" target="_blank" style="margin-left: 2%;">{{title}} </a>
+                </div>
                 <h4 *ngIf="result.result=='FAILED'" class="text-danger text-bold">{{result.result}}</h4>
             </div>
             <div class="w-100 text-center mt-5">
@@ -47,6 +51,5 @@
             </div>
         </form>
         </div>
-        
       </div>
 </section>

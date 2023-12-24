@@ -54,6 +54,7 @@ forget(){
           localStorage.setItem('role',res.user?.role);
           localStorage.setItem('id',res.user?.id);
           if(res.user.role === 'LEARNER'){
+            localStorage.setItem('payment',res.user?.paymentStatus);
             this.router.navigate(['/home']);
           }else{
             this.router.navigate(['/dashboard'])
