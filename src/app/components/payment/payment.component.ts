@@ -68,9 +68,9 @@ export class PaymentComponent implements OnInit {
           if(res.success){
             this.successAlertService.showSuccess("Payment Successfull. Thank you");
             localStorage.setItem('payment',"PAID")
+            this.router.navigate(['/course-content'])
           }
         })
-        this.router.navigate(['/course-content'])
       }
     }
   
