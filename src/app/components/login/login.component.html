@@ -33,7 +33,7 @@
         </p>
         
       </div>
-      <div class="col-md-2 mt-4 log">
+      <div class="col-md-2 mt-4 log text-center">
         <button type="submit" class="btn btn-primary login-btn">
           Login
         </button>
@@ -79,9 +79,8 @@
   </div>
 </div>
 
-  <div class="container row">
-    <div class="container col-md-auto">
-      <div class="signup shadow">
+  <div class="container w-100">
+      <div class="container signup col-md-8 shadow">
         <h1 class="text-bold text-dark">Create an Account</h1>
         <hr class="my-4" />
         <div>
@@ -151,13 +150,17 @@
             </div>
 
             <div class="text-center mt-3">
-              <button  type="submit" class="btn btn-success mt-3 signup-btn">
+              <button [disabled]="!register.valid"  type="submit" class="btn btn-success mt-3 signup-btn">
                 Signup
               </button>
             </div>
           </form>
         </div>
       </div>
-    </div>
+   
   </div>
 </section>
+<footer>
+  <p>Stay Inspired and Keep Learning!</p>
+  <p>&copy; {{ currentYear }}  Realroom360. All rights reserved.</p>
+</footer>
