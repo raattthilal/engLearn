@@ -19,6 +19,10 @@ interface USER {
 export class UserComponent implements OnInit {
   constructor(private router: Router, private userService:UserService,private successAlertService: SuccessAlertService){
   }
+  userObj={
+    id:'',
+    firstName:''
+  };
   users:USER[]=[];
   filteredUsers:USER[]=[];
   ngOnInit(): void {
@@ -37,9 +41,17 @@ export class UserComponent implements OnInit {
     this.userService.deleteUser(id).subscribe(res=>{
       if(res.success){
         this.successAlertService.showSuccess(res.message);
+        this.userObj={
+          id:'',
+          firstName:''
+        }
         this.ngOnInit();
       }
     })
+  }
+
+  returnUser(user:any){
+    this.userObj=user;
   }
   sortDirection = 'asc'; // Initial sort direction
   sortKey = 'id'; // Initial sort key

@@ -8,8 +8,8 @@ export class Apiinterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-       //const baseUrl = "http://172.104.61.150:7050";
-        const baseUrl = "http://localhost:";
+       const baseUrl = "http://13.233.161.93:";
+        // const baseUrl = "http://localhost:";
         const apiReq = req.clone({ url: `${baseUrl}${req.url}` });
         return next.handle(apiReq);
     }

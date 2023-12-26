@@ -8,6 +8,9 @@
     background-image: url('../../../assets/bg.jpg');
     min-height: 750px;
 }
+.table>thead{
+  height: 55px;
+}
 .nav-opt{
     border-right: 1px rgb(138, 176, 208) solid;
     border-left: 1px rgb(138, 176, 208) solid;

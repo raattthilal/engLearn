@@ -24,6 +24,12 @@
 <section class="secondSection">
     <app-success-alert></app-success-alert>
     <div class="container mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a [routerLink]="['/questions']">Questions</a></li>
+              <li class="breadcrumb-item active" aria-current="page"> {{currentPage}} </li>
+            </ol>
+          </nav>
         <h4 class="text-muted">Question</h4>
         <div class="update ">
             <form [formGroup]="updateData" (ngSubmit)="update()" class="row">

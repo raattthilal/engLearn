@@ -29,7 +29,7 @@
           <input type="text" class="form-control" (input)="filterData($event)" placeholder="Search">
         </div>
       <div class="table-responsive">
-        <table class="table table-hover table-success shadow">
+        <table class="table table-hover table-primary shadow">
           <thead>
             <tr>
               <th (click)="sortData('id')">ID <span [ngClass]="{'arrow-up': sortDirection === 'asc' && sortKey === 'id', 'arrow-down': sortDirection === 'desc' && sortKey === 'id'}"></span></th>
@@ -49,10 +49,26 @@
               <td>{{ users.email }}</td>
               <td>{{ users.phone }}</td>
               <td>{{ users.paymentStatus }} <span *ngIf="users.paymentStatus=='PAID'"><i class="fa fa-check-circle" style="color: green;" aria-hidden="true"></i></span></td>
-                <td><span style="cursor: pointer;" (click)="delete(users.id)"><i class="fa fa-trash-o" style="font-size:20px;color:red"></i></span></td>
+              <td><a style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#deleteModal" (click)="returnUser(users)" ><i class="fa fa-trash-o" style="font-size:20px;color:red"></i></a></td>
             </tr>
           </tbody>
         </table>
       </div>
       </div>
 </section>
+   <!-- Mo dal -->
+   <div class="modal fade"id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete the {{userObj.firstName}}?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+       
+        <div class="modal-footer ">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger rounded" data-bs-dismiss="modal" aria-label="Close" (click)="delete(userObj.id)"> Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>

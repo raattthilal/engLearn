@@ -48,6 +48,9 @@
     border: 1px rgb(109, 139, 104) solid;
     min-height: 400px;
   }
+  .table>thead{
+    height: 55px;
+  }
   .alert-success {
     position: fixed;
     top: 0;

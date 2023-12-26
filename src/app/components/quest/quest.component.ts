@@ -11,6 +11,7 @@ import { SuccessAlertService } from 'src/app/success-alert.service';
 })
 export class QuestComponent implements OnInit {
   id!:string
+  currentPage='Create question';
   constructor(private route:ActivatedRoute,private router:Router, private questService:QuestionService,private successAlertService: SuccessAlertService) { }
 
   updateData = new FormGroup({
@@ -25,6 +26,7 @@ export class QuestComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id') ?? '';
     if(this.id){
+      this.currentPage="Edit question"
       this.questService.getQuestionById(this.id).subscribe(res=>{
         if(res.success){
         console.log(res);

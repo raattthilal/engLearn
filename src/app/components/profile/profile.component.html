@@ -12,6 +12,12 @@
 <section class="secondSection">
     <app-success-alert></app-success-alert>
     <div class="container mt-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Profile</li>
+            </ol>
+          </nav>
         <h4 class="text-muted"> My Profile</h4>
         <div class="update ">
             <form [formGroup]="updateData" (ngSubmit)="update()" class="row">
