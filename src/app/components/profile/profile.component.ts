@@ -22,15 +22,20 @@ export class ProfileComponent implements OnInit{
     result:'',
     totalscore:''
   }
+  currentYear!: number;
   updateData = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     phone: new FormControl(''),
     email: new FormControl(''),
   })
- 
+  resetPassword = new FormGroup({
+    oldPassword: new FormControl(''),
+    newPassword: new FormControl(''),
+  })
   
   ngOnInit(): void {
+    this.currentYear = new Date().getFullYear();
     this.id=localStorage.getItem('id')??'';
     this.userService.getUserById(this.id).subscribe(res=>{
       if(res.success){
@@ -62,6 +67,17 @@ export class ProfileComponent implements OnInit{
   logOut(){
     localStorage.clear();
     this.router.navigate(['/login'])
+  }
+  resetPass(){
+    if(this.resetPassword.valid){
+      this.userService.resetPass(this.id,this.resetPassword.value).subscribe(res=>{
+        if(res.success){
+          this.successAlertService.showSuccess(res.message);
+        }else{
+          this.successAlertService.showSuccess(res.message);
+        }
+      })
+    }
   }
   update(){
     if(this.initalValues != this.updateData.value){

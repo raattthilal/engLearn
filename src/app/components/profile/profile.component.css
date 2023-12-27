@@ -21,6 +21,19 @@ label {
     padding: 6% 10% 3% 10%;  
     background: rgba(76, 175, 80, 0.3) 
   }
+  .update1{ 
+    min-height: 200px;
+    min-width: 450px;
+    border: 1px rgb(184, 225, 226) solid;
+    padding: 6% 10% 3% 10%;  
+    background: rgba(76, 175, 80, 0.3) 
+  }
+  footer {
+    background-color: #1d5da3;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
   .alert-success {
     position: fixed;
     top: 0;

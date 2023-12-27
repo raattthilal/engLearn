@@ -57,5 +57,24 @@
             </div>
         </form>
         </div>
+        <div class="update1 mt-5 rounded">
+            <form [formGroup]="resetPassword" (ngSubmit)="resetPass()" class="row">
+                <div class="col-md-6">
+                    <label for="">Old Password</label>
+                    <input type="password" class="form-control" id="o-password" formControlName="oldPassword">
+                </div>
+                <div class="col-md-6 ">
+                    <label for="">New Password</label>
+                    <input type="password" class="form-control"  id="n-password" formControlName="newPassword">
+                </div>
+                <div class="w-100 text-center mt-5">
+                    <button class="btn btn-lg btn-outline-danger"  type="submit">Reset Password</button>
+                </div>
+            </form>
+        </div>
       </div>
 </section>
+<footer class="mt-3">
+    <p>Stay Inspired and Keep Learning!</p>
+    <p>&copy; {{ currentYear }}  Realroom360. All rights reserved.</p>
+</footer>

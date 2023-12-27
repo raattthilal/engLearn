@@ -17,6 +17,9 @@ export class UserService {
   updateUser(id:string,body:any){
     return this.http.put<any>(`5000/user/update/${id}`,body);
   }
+  resetPass(id:string,body:any){
+    return this.http.put<any>(`5000/user/resetpassword/${id}`,body);
+  }
 
   listAllusers(){
     return this.http.get<any>('5000/user/list/')
