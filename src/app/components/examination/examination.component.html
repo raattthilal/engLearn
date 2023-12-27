@@ -16,21 +16,26 @@
         <h4 class="text-muted">Examination</h4>
         <div class="update ">
             <form  class="row">
-            <div class="col-md-12">
-                <label for="" class="px-3">Question {{ currentQuestionIndex + 1 }} / {{quizQuestions.length}}</label>
-                <h4 class="text-dark mt-3 px-3">{{ quizQuestions[currentQuestionIndex].question }}</h4>
+            <div class="col-md-12 d-flex">
+                <div id="col-md-3">
+                  <label for="" class="px-3">Question {{ currentQuestionIndex + 1 }} / {{quizQuestions.length}}</label>
+                </div>
+                <div class="col-md-6">
+                  <h4 class="text-dark mt-5 px-1" style="font-weight: bold;">{{ quizQuestions[currentQuestionIndex].question }}</h4>
+                </div>
+                <div id="timer" class="col-md-3">Time remaining:<span class="text-primary"> {{ timeRemaining }} </span>seconds</div>
             </div>
             <hr class="mt-3">
-            <div class="col-md-6 mt-4 box" (click)="selectedAns('options_1',quizQuestions[currentQuestionIndex].options_1)">
+            <div class="col-md-6 mt-4 box"  [style.pointer-events]="isClickable ? 'auto' : 'none'" (click)="selectedAns('options_1',quizQuestions[currentQuestionIndex].options_1)">
              <span>{{quizQuestions[currentQuestionIndex].options_1}}</span>
             </div>
-            <div class="col-md-6 mt-4 box" (click)="selectedAns('options_2',quizQuestions[currentQuestionIndex].options_2)">
+            <div class="col-md-6 mt-4 box" [style.pointer-events]="isClickable ? 'auto' : 'none'" (click)="selectedAns('options_2',quizQuestions[currentQuestionIndex].options_2)">
                 <span>{{quizQuestions[currentQuestionIndex].options_2}}</span>
             </div>
-            <div class="col-md-6 mt-4 box" (click)="selectedAns('options_3',quizQuestions[currentQuestionIndex].options_3)">
+            <div class="col-md-6 mt-4 box" [style.pointer-events]="isClickable ? 'auto' : 'none'" (click)="selectedAns('options_3',quizQuestions[currentQuestionIndex].options_3)">
                  <span>{{quizQuestions[currentQuestionIndex].options_3}}</span>
             </div>
-            <div class="col-md-6 mt-4 box" (click)="selectedAns('options_4',quizQuestions[currentQuestionIndex].options_4)">
+            <div class="col-md-6 mt-4 box" [style.pointer-events]="isClickable ? 'auto' : 'none'" (click)="selectedAns('options_4',quizQuestions[currentQuestionIndex].options_4)">
               <span>{{quizQuestions[currentQuestionIndex].options_4}}</span>
             </div>
             

@@ -16,14 +16,16 @@ export class SettingComponent implements OnInit {
   public initialValues:any;
   settings = new FormGroup({
     feesAmount: new FormControl(''),
-    passPercentage: new FormControl('')
+    passPercentage: new FormControl(''),
+    questionTimer: new FormControl('')
   })
   ngOnInit(): void {
     this.settingservice.getSettings().subscribe(res=>{
       if(res.success){
         this.settings.setValue({
           feesAmount : res.data.feesAmount,
-          passPercentage: res.data.passPercentage
+          passPercentage: res.data.passPercentage,
+          questionTimer: res.data.questionTimer
         })
         this.initialValues = this.settings.value;
         this.id = res.data.id;
