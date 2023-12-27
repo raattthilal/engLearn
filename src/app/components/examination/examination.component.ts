@@ -23,7 +23,7 @@ export class ExaminationComponent implements OnInit,OnDestroy {
   questionTimer!:number;
   timeRemaining!:number;
   timerSubscription!: Subscription;
-
+  userPaymentStatus!:string;
   quizQuestions!: QUESTION[];
   showModal: boolean = false;
   currentQuestionIndex: number = 0;
@@ -35,6 +35,13 @@ export class ExaminationComponent implements OnInit,OnDestroy {
   }
   isClickable: boolean = true;
   ngOnInit(): void {
+    this.userPaymentStatus = localStorage.getItem('payment') ?? 'PENDING';
+    if(this.userPaymentStatus!='PAID'){
+      this.router.navigate(['/payment'])
+    }
+    if(localStorage.getItem('exam') == 'PASS'){
+      this.router.navigate(['/home'])
+    }
     this.quizAnswerOutput = [];
     this.showModal = false;
     this.isClickable = true;

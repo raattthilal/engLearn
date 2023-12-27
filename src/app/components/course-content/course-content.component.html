@@ -1,13 +1,16 @@
 <section class="firstSection">
     <nav class="navbar navbar-light bg-dark" >
-        <a class="navbar-brand px-1" [routerLink]="['/home']">
+        <a class="navbar-brand px-4" [routerLink]="['/home']">
             <img src="../../../assets/logo.jpeg" class="logo" alt="" />
             <h5 class="text-white mt-1">Let's Talk English</h5>
-          </a>
-          <div class="text-center"><button *ngIf="exam!='PASS'" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#startModal" >Start Exam <i class="fa fa-file-text-o" aria-hidden="true"></i></button></div>
-          <div class="col-md-4 text-end px-3">
-            <button class="btn btn-danger" (click)="logOut()">Logout</button>
-          </div>
+        </a>
+        <div class="text-center">
+          <a target="_blank" style="margin-right: 90px;" href="https://wa.me/+919947488233"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Contact Whatsapp"><i class="fa fa-whatsapp text-success h1" ></i></a>
+          <button *ngIf="exam!='PASS'" style="margin-bottom: 10px;" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#startModal" >Start Exam <i class="fa fa-file-text-o" aria-hidden="true"></i></button>
+        </div>
+        <div class="col-md-3 text-end px-3">
+          <button class="btn btn-danger btn-lg" (click)="logOut()">Logout</button>
+        </div>
       </nav>
 </section>
 <section class="w-100">

@@ -1,18 +1,21 @@
 <section class="firstSection">
-    <nav class="navbar navbar-light bg-dark" >
-        <a class="navbar-brand px-2">
+    <div class="navbar navbar-light bg-dark" >
+        <a class="navbar-brand px-3">
           <img src="../../../assets/logo.jpeg" class="logo" alt="" />
           <h5 class="text-white mt-1">Let's Talk English</h5>
         </a>
-        <ul class="navbar-nav"style="margin-left:auto ;">
+        <ul class="navbar-nav"style="margin-left:auto;">           
             <li class="nav-item active">
-              <a class="nav-link text-white" [routerLink]="['/profile']"><span><i class="fa fa-user-o" aria-hidden="true"></i></span> My Profile</a>
-            </li>
+                <a class=" text-white btn btn-outline-secondary btn-lg" [routerLink]="['/profile']"><span><i class="fa fa-user-o" aria-hidden="true"></i></span> My Profile</a>
+            </li>            
         </ul>
-        <div class="col-md-2 text-end px-3">
-          <button class="btn btn-danger" (click)="logOut()">Logout</button>
+        <div class="px-5">
+            <a target="_blank" href="https://wa.me/+919947488233"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Contact Whatsapp"><i class="fa fa-whatsapp text-success h1" ></i></a>
         </div>
-      </nav>
+        <div class="col-md-2 text-center">
+            <button class="btn btn-danger btn-lg" (click)="logOut()">Logout</button>
+        </div>
+    </div>
 </section>
 
 <header class="d-flex justify-content-center shadow">
@@ -59,7 +62,7 @@
     <h5>Start Your Journey</h5>
     <p>The Let's Talk English is your passport to English fluency. Begin your adventure today!</p>
     
-    <h5>Need Help? <span><a target="_blank" href="https://wa.me/+919562888488">Contact Us</a></span></h5>
+    <h5>Need Help? <span><a target="_blank" href="https://wa.me/+919947488233">Contact Us</a></span></h5>
     <p>Our support team is ready to assist you.</p>
     <div class="text-center mt-3">
     <button *ngIf="userPaymentStatus=='PENDING'" class="btn btn-primary btn-lg mt-3 rounded shadow" [routerLink]="['/payment']">Start Your Journey</button>

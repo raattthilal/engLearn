@@ -44,6 +44,8 @@ forget(){
     this.authentication.forgetPass(this.forgetPassword.value).subscribe(res=>{
       if(res.success){
         this.successAlertService.showSuccess(res.message);
+      }else{
+        this.successAlertService.showSuccess(res.message);
       }
     })
   }
