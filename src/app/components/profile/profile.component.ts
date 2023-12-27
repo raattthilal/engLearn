@@ -76,6 +76,7 @@ export class ProfileComponent implements OnInit{
         }else{
           this.successAlertService.showSuccess(res.message);
         }
+        this.resetPassword.reset();
       })
     }
   }
