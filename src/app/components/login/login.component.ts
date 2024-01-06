@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private authentication:AuthenticationService, private successAlertService: SuccessAlertService){
     }
+    enrollNow = true;
     currentYear!: number;
     login = new FormGroup({
       username: new FormControl('', [Validators.required]),
@@ -32,13 +33,16 @@ export class LoginComponent implements OnInit {
       password: new FormControl('',[Validators.required,Validators.minLength(5)]),
     })
   ngOnInit() {
+    this.enrollNow = true;
     this.currentYear = new Date().getFullYear();
     const token = localStorage.getItem('token');
       if(token?.length){
         this.router.navigate(['/home'])
       }
   }
-  
+  enrollNowBtn(){
+    this.enrollNow =false;
+  }
 forget(){
   if(this.forgetPassword.valid){    
     this.authentication.forgetPass(this.forgetPassword.value).subscribe(res=>{

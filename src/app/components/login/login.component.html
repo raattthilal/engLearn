@@ -78,8 +78,49 @@
     </div>
   </div>
 </div>
-
-  <div class="container w-100">
+<div *ngIf="enrollNow==true" class="row w-100 d-flex">
+  <div class="col-md-7 bg1">
+    <div class="text-dark">
+      <h4 style="font-weight: bolder;">
+        Elevate Your English Speaking Skills! <br>
+        Master Phonetics with Interactive Sessions!!        
+      </h4>
+      <p class="mt-3">
+        Receive expert guidance from <strong> Dr. Shyamala Sasidharan,</strong> Former Professor of English at the Institute of English, University of Kerala, India. 
+      </p> 
+      <h5 class="mt-3">
+        What are we offering?
+      </h5>
+<p>
+Tailored sessions focusing on spoken English fluency in diverse communicative scenarios.
+Engaging, interactive learning to boost confidence in conversational English
+Accessible from anywhere: Join online and become a fluent communicator!
+</p>
+<h5 class="mt-4">
+Ready to Speak English Confidently?
+</h5>
+<p class="mt-3">
+  Enroll now for a transformative experience in linguistic excellence!
+</p>
+    </div>
+  </div>
+  <div class="col-md-5 bg2 ">
+    <div class=" w-100">
+      <h3 class="text-danger" style="font-weight: bold;">
+        Unlock the Power of Fluency with Dr. Shyamala Sasidharan!
+      </h3>
+    </div>
+    <div class="w-100 ">
+      <img src="../../../assets/im.jpg" class="photo mt-2" width="200px" height="250px" alt="">
+    </div>
+    <div class="w-100 mt-4">
+      <span>Pay Just ₹ 9999 Only</span>
+      <div class="btn-enroll" (click)="enrollNowBtn()"></div>
+    </div>
+    
+  </div>
+</div>
+  <div *ngIf="enrollNow!=true" class="container w-100">
       <div class="container signup col-md-8 shadow">
         <h1 class="text-bold text-dark">Create an Account</h1>
         <hr class="my-4" />
