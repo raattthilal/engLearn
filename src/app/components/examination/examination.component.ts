@@ -97,7 +97,7 @@ export class ExaminationComponent implements OnInit,OnDestroy {
     if (!this.quizAnswerOutput.some((answer:any) => answer.id === this.eachAnswer.id)) {
       this.quizAnswerOutput.push(JSON.parse(JSON.stringify(this.eachAnswer)));
     }
-    console.log(this.quizAnswerOutput);
+    // console.log(this.quizAnswerOutput);
     
     // Reset selected answer for the next question
     this.selectedAnswer = '';

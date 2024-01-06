@@ -29,7 +29,7 @@ export class QuestComponent implements OnInit {
       this.currentPage="Edit question"
       this.questService.getQuestionById(this.id).subscribe(res=>{
         if(res.success){
-        console.log(res);
+        // console.log(res);
         
           this.updateData.setValue({
             question: res.data.question,
