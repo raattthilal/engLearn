@@ -55,12 +55,15 @@ export class ProfileComponent implements OnInit{
     this.questionService.getResult().subscribe(res=>{
       if(res.success){
         this.result=res.data;
+        localStorage.setItem('exam',res.data.result);
         this.certif.getCertificate().subscribe(res=>{
           if(res.success){
             this.certificateUrl=res.data.url;
             this.title = res.data.title
           }
         })
+      }else{
+        localStorage.setItem('exam','NOTATTEND');
       }
     })
   }
